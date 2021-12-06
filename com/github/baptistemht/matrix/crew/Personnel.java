@@ -33,6 +33,9 @@ public class Personnel {
             i++;
 
         }
+        if(i+1 == Personnel.size()){
+            return null;
+        }
 
         return Personnel.get(i);
     }
