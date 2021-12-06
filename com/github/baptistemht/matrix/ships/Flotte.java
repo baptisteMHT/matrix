@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 public class Flotte {
 
+    private final String nom;
     private final ArrayList<Vaisseau> vaisseaux;
 
-    public Flotte() {
-        this.vaisseaux = new ArrayList<Vaisseau>();
+    public Flotte(String nom) {
+        this.nom        = nom;
+        this.vaisseaux  = new ArrayList<Vaisseau>();
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public ArrayList<Vaisseau> getVaisseaux() {

@@ -1,29 +1,27 @@
 package com.github.baptistemht.matrix;
-import in.keyboard.Keyboard;
+
 import com.github.baptistemht.matrix.crew.Personnel;
+import com.github.baptistemht.matrix.ships.Flotte;
+
+import in.keyboard.Keyboard;
 
 public class Main {
     public static void main(String args[]){
-        //attributs
-        final int MAX = 5;
-        int choix;
-        Personnel sion = new Personnel(MAX);
 
-        //methods
+        // constantes
+        final int MAX_PERSONNEL = 100;
+        final int MAX_VAISSEAU  = 5; 
+
+        // Nouvelle flotte et Liste du personnel
+        Flotte fleet    = new Flotte("Flotte de Sion");
+        Personnel sion  = new Personnel(MAX_PERSONNEL);
 
 
-        //mise en place du menu 
+        //Affichage du menu
+        System.out.println("Bienvenue in the Matrice");
+        displayMenu();
 
-        System.out.println("Que voulez vous faire ?");
-        System.out.println("1: Créer une personne");              
-        System.out.println("2: Afficher la liste du personnel");
-        System.out.println("3: Créer un vaisseau");
-        System.out.println("4: Afficher la liste des vaisseaux");
-        System.out.println("5: Ajouter un membre du personnel dans un certain vaisseau");
-        System.out.println("6: Afficher l'ensemble des personnes d'un vaisseau");
-        System.out.println("7: Supprimer un membre d'un équipage");
-        System.out.println("8: Fin");
-        choix = Keyboard.getInt();
+        int choix = Keyboard.getInt();
 
         //utilisation de switch pour les différentes réponses
         while(choix != 8){
@@ -85,10 +83,27 @@ public class Main {
                     return; //arret la boucle car choix incorect
 
             }
+
+            displayMenu();
+            choix = Keyboard.getInt();
+        }
+
+        System.out.println("Goodbye my friends...");
     }
 
-
-
-        }
+    private static void displayMenu(){
+        System.out.println("");
+        System.out.println("Que voulez vous faire ?");
+        System.out.println("1: Créer une personne");              
+        System.out.println("2: Afficher la liste du personnel");
+        System.out.println("3: Créer un vaisseau");
+        System.out.println("4: Afficher la liste des vaisseaux");
+        System.out.println("5: Ajouter un membre du personnel dans un certain vaisseau");
+        System.out.println("6: Afficher l'ensemble des personnes d'un vaisseau");
+        System.out.println("7: Supprimer un membre d'un équipage");
+        System.out.println("8: Fin");
+        System.out.println("");
+        System.out.print("> ");
+    }
     
 }
