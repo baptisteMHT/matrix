@@ -10,7 +10,7 @@ public class Main {
 
         // constantes
         final int MAX_PERSONNEL = 100;
-        final int MAX_VAISSEAU  = 5; 
+        final int MAX_EQUIAPGE  = 5; 
 
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
