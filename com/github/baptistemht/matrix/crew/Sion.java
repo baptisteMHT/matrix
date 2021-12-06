@@ -1,8 +1,9 @@
 package com.github.baptistemht.matrix.crew;
 
 public class Sion extends Personne {
+    //attributs
     private Poste poste; // de même énumération car les postes sont définis
-    
+    //methods
 
     public Sion(String nom, boolean estHomme, int age, Grade grade, Poste poste){
         super(nom,estHomme,age,grade);
