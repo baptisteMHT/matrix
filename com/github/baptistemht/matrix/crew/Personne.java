@@ -17,18 +17,18 @@ public class Personne {
         this.grade = grade;
     }
 
-    public String getnom() {
+    public String getNom() {
         return nom;
     }
 
-    public int getage() {
+    public int getAge() {
         return age;
     }
-    public Grade getgrade() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public boolean isestHomme() {
+    public boolean isEstHomme() {
         return estHomme;
     }
 
@@ -39,6 +39,7 @@ public class Personne {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+
 
 
     
