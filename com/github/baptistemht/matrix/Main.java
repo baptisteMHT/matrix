@@ -26,63 +26,69 @@ public class Main {
         choix = Keyboard.getInt();
 
         //utilisation de switch pour les différentes réponses
-        switch(choix){
-            case 1:
-                System.out.println("Voulez vous créer une Sion ou membre libéré ?");
-                System.out.println("1: Sion");
-                System.out.println("2: Membre libéré");
-                choix = Keyboard.getInt();
-                switch(choix){
-                    case 1:
-                        //faire les demandes pour creer un sion
-                        break;
-                    case 2:
-                        //faire les demandes pour creer un membre libre
-                        break;
-                    default:
-                        System.out.println("Choix incorrect");
+        while(choix != 8){
+            switch(choix){
+                case 1:
+                    System.out.println("Voulez vous créer une Sion ou membre libéré ?");
+                    System.out.println("1: Sion");
+                    System.out.println("2: Membre libéré");
+                    choix = Keyboard.getInt();
+                    switch(choix){
+                        case 1:
 
-                }
-                break;
+                            //faire les demandes pour creer un sion
+                            break;
+                        case 2:
+                            //faire les demandes pour creer un membre libre
+                            break;
+                        default:
+                            System.out.println("Choix incorrect");
+                            choix = 1;  //permet de retourner a la question précédente si mauvais imput.
 
-            case 2:
-               //afficher l'ensemble des personnes
+                    }
+                    break;
 
-                break;
-            
+                case 2:
+                System.out.println("La liste des membres du personnel est : ");
+                //afficher l'ensemble des personnes
 
-            case 3:
-                //faire la demande pour créer un vaisseau
-                break;
+                    break;
+                
 
-            case 4:
+                case 3:
+                    //faire la demande pour créer un vaisseau
+                    break;
 
-                //afficher la liste des vaiseaux
-                break;
+                case 4:
+                    System.out.println("La liste des vaisseaux est : ");
+                    //afficher la liste des vaiseaux
+                    break;
 
-            case 5:
-                //demander dans quel vaisseau
-                //créer une personne
-                // ou utiliser une personne de la liste du personnel 
-                break;
-            case 6:
-                //demande le nom du vaisseau dont l'on veut afficher la liste 
-                //afficher cette liste
-                break;
-            case 7:
-                //demander quel vaisseau
-                //demander le nom de la personne
-                // le supprimer du vaisseau UNIQUEMENT
-                break;
-            case 8:
-                //dire merci aurevoir et return null tout le tralala
-                break;
-            default:
-                System.out.println("Choix incorrect");
-        }
+                case 5:
+                    //demander dans quel vaisseau
+                    //créer une personne
+                    // ou utiliser une personne de la liste du personnel 
+                    break;
+                case 6:
+                    //demande le nom du vaisseau dont l'on veut afficher la liste 
+                    System.out.println("La liste des membres du vaisseau " + "NON DU VAISSEAU" + " est :");
+                    //afficher cette liste
+                    break;
+                case 7:
+                    //demander quel vaisseau
+                    //demander le nom de la personne
+                    // le supprimer du vaisseau UNIQUEMENT
+                    break;
+                
+                default:
+                    System.out.println("Choix incorrect");
+                    return; //arret la boucle car choix incorect
 
-
-
+            }
     }
+
+
+
+        }
     
 }
