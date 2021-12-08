@@ -49,7 +49,7 @@ public class Main {
                     System.out.print("> ");
                     choix = Keyboard.getInt();
                     
-                    while(choix != 1 || choix != 2){
+                    while(choix != 1 && choix != 2){
                         System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
                         System.out.println("1: Sion");
                         System.out.println("2: Membre libéré");
