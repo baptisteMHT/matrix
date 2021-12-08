@@ -1,7 +1,9 @@
 package com.github.baptistemht.matrix;
 
-import com.github.baptistemht.matrix.crew.Personnel;
 import com.github.baptistemht.matrix.ships.Flotte;
+import com.github.baptistemht.matrix.ships.Vaisseau;
+import com.github.baptistemht.matrix.crew.Grade;
+import com.github.baptistemht.matrix.ships.Equipage;
 
 import in.keyboard.Keyboard;
 
@@ -10,11 +12,11 @@ public class Main {
 
         // constantes
         final int MAX_PERSONNEL = 100;
-        final int MAX_EQUIAPGE  = 5; 
+        final int MAX_EQUIPAGE  = 5; 
 
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
-        Personnel sion  = new Personnel(MAX_PERSONNEL);
+        Equipage sion  = new Equipage(MAX_PERSONNEL);
 
 
         //Affichage du menu
@@ -47,14 +49,27 @@ public class Main {
                     break;
 
                 case 2:
-                System.out.println("La liste des membres du personnel est : ");
-                //afficher l'ensemble des personnes
+                    System.out.println("La liste des membres du personnel est : ");
+                    //afficher l'ensemble des personnes
 
                     break;
                 
 
                 case 3:
                     //faire la demande pour créer un vaisseau
+                    System.out.print("Choisissez un nom de vaisseau : ");
+                    String name = Keyboard.getString();
+
+                    System.out.println(fleet.getVaisseau(name));
+                    
+                    while(fleet.getVaisseau(name) != null){
+                        System.out.println("Ce vaisseau existe déjà.");
+                        System.out.print("Choissisez un nom de vaisseau : ");
+                        name = Keyboard.getString();
+                    }
+
+                    fleet.addVaisseau(new Vaisseau(name, MAX_EQUIPAGE));
+                    System.out.println("Vaisseau " + name + " ajouté à la flotte.");
                     break;
 
                 case 4:

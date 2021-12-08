@@ -1,14 +1,16 @@
-package com.github.baptistemht.matrix.crew;
+package com.github.baptistemht.matrix.ships;
 
 import java.util.ArrayList;
 
-public class Personnel {
+import com.github.baptistemht.matrix.crew.Personne;
+
+public class Equipage {
     //attributs
     private final int limit;
     private final ArrayList<Personne> personnel;
     //methods
 
-    public Personnel(int limit){
+    public Equipage(int limit){
         this.limit = limit;
         this.personnel = new ArrayList<Personne>();
     }
