@@ -73,6 +73,10 @@ public class Main {
                     break;
 
                 case 4:
+                    if(fleet.getVaisseaux().size() == 0){
+                        System.out.println("Il n'y a aucun vaisseau d'enregistré.");
+                        break;
+                    }
                     System.out.println("Liste des vaisseaux : ");
                     for(int i = 0; i<fleet.getVaisseaux().size(); i++){
                         System.out.println(i + ". " + fleet.getVaisseaux().get(i));
