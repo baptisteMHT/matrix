@@ -109,7 +109,7 @@ public class Main {
             choix = Keyboard.getInt();
         }
 
-        System.out.println("Goodbye my friends...");
+        System.out.println("Goodbye my friend...");
     }
 
     private static void displayMenu(){
