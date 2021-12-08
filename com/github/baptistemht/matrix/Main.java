@@ -100,8 +100,8 @@ public class Main {
                     break;
                 
                 default:
-                    System.out.println("Choix incorrect");
-                    return; //arret la boucle car choix incorect
+                    System.out.println("Choix incorrect.");
+                    break;
 
             }
 
