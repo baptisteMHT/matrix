@@ -89,9 +89,20 @@ public class Main {
                     // ou utiliser une personne de la liste du personnel 
                     break;
                 case 6:
-                    //demande le nom du vaisseau dont l'on veut afficher la liste 
-                    System.out.println("La liste des membres du vaisseau " + "NON DU VAISSEAU" + " est :");
-                    //afficher cette liste
+                    System.out.print("Nom du vaisseau : ");
+                    String n = Keyboard.getString();
+
+                    System.out.println(fleet.getVaisseau(n));
+                    
+                    while(fleet.getVaisseau(n) == null){
+                        System.out.println("Ce vaisseau n'existe pas.");
+                        System.out.print("Nom du vaisseau : ");
+                        n = Keyboard.getString();
+                    }
+
+                    System.out.println("Liste des membres du vaisseau " + n + " :");
+                    System.out.println(fleet.getVaisseau(n).getEquipage());
+
                     break;
                 case 7:
                     //demander quel vaisseau

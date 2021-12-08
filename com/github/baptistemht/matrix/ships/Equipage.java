@@ -45,4 +45,16 @@ public class Equipage {
         return personnel.get(i);
     }
 
+    @Override
+    public String toString() {
+        if(personnel.size() == 0) return "Aucun membre d'équipage à bord.";
+        
+        String s = "";
+
+        for(int i = 0; i<personnel.size(); i++){
+            s=s+("- "+personnel.get(i).getNom() + "\n");
+        }
+        return s;
+    }
+
 }
