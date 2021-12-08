@@ -2,7 +2,8 @@ package com.github.baptistemht.matrix;
 
 import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
-import com.github.baptistemht.matrix.crew.Grade;
+import com.github.baptistemht.matrix.crew.Libere;
+import com.github.baptistemht.matrix.crew.Sion;
 import com.github.baptistemht.matrix.ships.Equipage;
 
 import in.keyboard.Keyboard;
@@ -24,28 +25,47 @@ public class Main {
         displayMenu();
 
         int choix = Keyboard.getInt();
+        String name;
 
         //utilisation de switch pour les différentes réponses
         while(choix != 8){
+
             switch(choix){
                 case 1:
-                    System.out.println("Voulez vous créer une Sion ou membre libéré ?");
+
+                    System.out.print("Nom de la personne : ");
+                    name = Keyboard.getString();
+                    
+                    while(sion.getPersonne(name) != null){
+                        System.out.println("Ce nom existe déjà.");
+                        System.out.print("Nom de la personne : ");
+                        name = Keyboard.getString();
+                    }
+
+                    System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
                     System.out.println("1: Sion");
                     System.out.println("2: Membre libéré");
+                    System.out.println("");
+                    System.out.print("> ");
                     choix = Keyboard.getInt();
-                    switch(choix){
-                        case 1:
-
-                            //faire les demandes pour creer un sion
-                            break;
-                        case 2:
-                            //faire les demandes pour creer un membre libre
-                            break;
-                        default:
-                            System.out.println("Choix incorrect");
-                            choix = 1;  //permet de retourner a la question précédente si mauvais imput.
-
+                    
+                    while(choix != 1 || choix != 2){
+                        System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
+                        System.out.println("1: Sion");
+                        System.out.println("2: Membre libéré");
+                        System.out.println("");
+                        System.out.print("> ");
+                        choix = Keyboard.getInt();
                     }
+
+                    if(choix == 1){
+                        sion.addPersonne(new Sion(name, true, 18, null, null));
+                        System.out.println("Sion " + name + " ajouté à la liste du personnel.");
+                    }else{
+                        System.out.println("Membre libéré " + name + " ajouté à la liste du personnel.");
+                        sion.addPersonne(new Libere(name, true, 18, null, 0, 0));
+                    }
+                    
                     break;
 
                 case 2:
@@ -58,9 +78,8 @@ public class Main {
                 case 3:
                     //faire la demande pour créer un vaisseau
                     System.out.print("Choisissez un nom de vaisseau : ");
-                    String name = Keyboard.getString();
+                    name = Keyboard.getString();
 
-                    System.out.println(fleet.getVaisseau(name));
                     
                     while(fleet.getVaisseau(name) != null){
                         System.out.println("Ce vaisseau existe déjà.");

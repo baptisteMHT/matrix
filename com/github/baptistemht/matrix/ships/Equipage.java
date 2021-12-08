@@ -33,16 +33,13 @@ public class Equipage {
     }
 
     public Personne getPersonne(String n){
-        int i = 0;
-        while (i< personnel.size() && personnel.get(i).getNom()!= n){
-            i++;
+        if(personnel.size() == 0) return null;
 
-        }
-        if(i+1 == personnel.size()){
-            return null;
+        for(int i = 0; i<personnel.size(); i++){
+            if(personnel.get(i).getNom().equalsIgnoreCase(n)) return personnel.get(i);
         }
 
-        return personnel.get(i);
+        return null;
     }
 
     @Override
