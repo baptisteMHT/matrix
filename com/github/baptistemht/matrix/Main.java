@@ -73,8 +73,10 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("La liste des vaisseaux est : ");
-                    //afficher la liste des vaiseaux
+                    System.out.println("Liste des vaisseaux : ");
+                    for(int i = 0; i<fleet.getVaisseaux().size(); i++){
+                        System.out.println(i + ". " + fleet.getVaisseaux().get(i));
+                    }
                     break;
 
                 case 5:
