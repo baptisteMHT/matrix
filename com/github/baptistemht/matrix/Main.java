@@ -32,39 +32,7 @@ public class Main {
 
             switch(choix){
                 case 1:
-
-                    System.out.print("Nom de la personne : ");
-                    name = Keyboard.getString();
-                    
-                    while(sion.getPersonne(name) != null){
-                        System.out.println("Ce nom existe déjà.");
-                        System.out.print("Nom de la personne : ");
-                        name = Keyboard.getString();
-                    }
-
-                    System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
-                    System.out.println("1: Sion");
-                    System.out.println("2: Membre libéré");
-                    System.out.println("");
-                    System.out.print("> ");
-                    choix = Keyboard.getInt();
-                    
-                    while(choix != 1 && choix != 2){
-                        System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
-                        System.out.println("1: Sion");
-                        System.out.println("2: Membre libéré");
-                        System.out.println("");
-                        System.out.print("> ");
-                        choix = Keyboard.getInt();
-                    }
-
-                    if(choix == 1){
-                        sion.addPersonne(new Sion(name, true, 18, null, null));
-                        System.out.println("Sion " + name + " ajouté à la liste du personnel.");
-                    }else{
-                        System.out.println("Membre libéré " + name + " ajouté à la liste du personnel.");
-                        sion.addPersonne(new Libere(name, true, 18, null, 0, 0));
-                    }
+                    createCrew(sion);
                     break;
 
                 case 2:
@@ -100,28 +68,22 @@ public class Main {
                     break;
 
                 case 5:
-                    //demander dans quel vaisseau
+                    name = findExistingShip(fleet);
+
                     //créer une personne
                     // ou utiliser une personne de la liste du personnel
                     break;
+
                 case 6:
-                    System.out.print("Nom du vaisseau : ");
-                    String n = Keyboard.getString();
+                    name = findExistingShip(fleet);
 
-                    System.out.println(fleet.getVaisseau(n));
-                    
-                    while(fleet.getVaisseau(n) == null){
-                        System.out.println("Ce vaisseau n'existe pas.");
-                        System.out.print("Nom du vaisseau : ");
-                        n = Keyboard.getString();
-                    }
-
-                    System.out.println("Liste des membres du vaisseau " + n + " :");
-                    System.out.println(fleet.getVaisseau(n).getEquipage());
-
+                    System.out.println("Liste des membres du vaisseau " + name + " :");
+                    System.out.println(fleet.getVaisseau(name).getEquipage());
                     break;
+
                 case 7:
-                    //demander quel vaisseau
+                    name = findExistingShip(fleet);
+
                     //demander le nom de la personne
                     // le supprimer du vaisseau UNIQUEMENT
                     break;
@@ -152,6 +114,86 @@ public class Main {
         System.out.println("8: Fin");
         System.out.println("");
         System.out.print("> ");
+    }
+
+    private static String findExistingShip(Flotte fleet){
+        System.out.print("Nom du vaisseau : ");
+        String name = Keyboard.getString();
+
+        System.out.println(fleet.getVaisseau(name));
+        
+        while(fleet.getVaisseau(name) == null){
+            System.out.println("Ce vaisseau n'existe pas.");
+            System.out.print("Nom du vaisseau : ");
+            name = Keyboard.getString();
+        }
+
+        return name;
+    }
+
+    private static void createCrew(Equipage crew){
+        System.out.print("Nom de la personne : ");
+        String name = Keyboard.getString();
+        
+        while(crew.getPersonne(name) != null){
+            System.out.println("Ce nom existe déjà.");
+            System.out.print("Nom de la personne : ");
+            name = Keyboard.getString();
+        }
+
+
+        System.out.print("Age de la personne : ");
+        int age = Keyboard.getInt();
+
+        
+        System.out.println("Sexe de la personne :");
+        System.out.println("1: Masculin");
+        System.out.println("2: Féminin");
+        System.out.println("");
+        System.out.print("> ");
+        int choix = Keyboard.getInt();
+        
+        while(choix != 1 && choix != 2){
+            System.out.println("Sexe de la personne :");
+            System.out.println("1: Masculin");
+            System.out.println("2: Féminin");
+            System.out.println("");
+            System.out.print("> ");
+            choix = Keyboard.getInt();
+        }
+
+        boolean estHomme;
+
+        if(choix == 1){
+            estHomme = true;
+        }else{
+            estHomme = false;
+        }
+        
+
+        System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
+        System.out.println("1: Sion");
+        System.out.println("2: Membre libéré");
+        System.out.println("");
+        System.out.print("> ");
+        choix = Keyboard.getInt();
+        
+        while(choix != 1 && choix != 2){
+            System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
+            System.out.println("1: Sion");
+            System.out.println("2: Membre libéré");
+            System.out.println("");
+            System.out.print("> ");
+            choix = Keyboard.getInt();
+        }
+
+        if(choix == 1){
+            crew.addPersonne(new Sion(name, estHomme, age, null, null));
+            System.out.println(name + " ajouté à la liste du personnel. (Type: Sion, Homme: " + estHomme + ", Age: " +age + ")");
+        }else{
+            crew.addPersonne(new Libere(name, estHomme, age, null, 0, 0));
+            System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
+        }
     }
     
 }
