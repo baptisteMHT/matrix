@@ -65,15 +65,12 @@ public class Main {
                         System.out.println("Membre libéré " + name + " ajouté à la liste du personnel.");
                         sion.addPersonne(new Libere(name, true, 18, null, 0, 0));
                     }
-                    
                     break;
 
                 case 2:
-                    System.out.println("La liste des membres du personnel est : ");
-                    //afficher l'ensemble des personnes
-
+                    System.out.println("Liste des membres du personnel : ");
+                    System.out.println(sion);
                     break;
-                
 
                 case 3:
                     //faire la demande pour créer un vaisseau
@@ -105,7 +102,7 @@ public class Main {
                 case 5:
                     //demander dans quel vaisseau
                     //créer une personne
-                    // ou utiliser une personne de la liste du personnel 
+                    // ou utiliser une personne de la liste du personnel
                     break;
                 case 6:
                     System.out.print("Nom du vaisseau : ");
