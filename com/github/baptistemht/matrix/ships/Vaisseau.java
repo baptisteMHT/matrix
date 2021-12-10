@@ -20,7 +20,7 @@ public class Vaisseau {
 
     @Override
     public String toString() {
-        return "Vaisseau " + nom + " est composé de " + equipage.getPersonnel().size() + " membres d'équipages.";
+        return "Vaisseau " + nom + " est composé de " + equipage.getPersonnel().size() + " membres d'équipage.";
     }
     
 }

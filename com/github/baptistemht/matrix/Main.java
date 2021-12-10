@@ -5,6 +5,7 @@ import com.github.baptistemht.matrix.ships.Vaisseau;
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
 import com.github.baptistemht.matrix.ships.Equipage;
+import com.github.baptistemht.matrix.crew.Personne;
 
 import in.keyboard.Keyboard;
 
@@ -41,7 +42,6 @@ public class Main {
                     break;
 
                 case 3:
-                    //faire la demande pour créer un vaisseau
                     System.out.print("Choisissez un nom de vaisseau : ");
                     name = Keyboard.getString();
 
@@ -68,10 +68,32 @@ public class Main {
                     break;
 
                 case 5:
+                    
                     name = findExistingShip(fleet);
+                    System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
+                    System.out.println("1: Oui");
+                    System.out.println("2: Non");
+                    choix = Keyboard.getInt();
+                    while(choix != 1 && choix != 2){
+                        System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
+                        System.out.println("1: Oui");
+                        System.out.println("2: Non");
+                        choix = Keyboard.getInt();
+                    }
+                    if (choix==1){
 
-                    //créer une personne
-                    // ou utiliser une personne de la liste du personnel
+                        fleet.getVaisseau(name).getEquipage().addPersonne(findExistingMember(sion));
+                    
+                    
+                        
+
+                    }
+                    if (choix ==2){
+                        fleet.getVaisseau(name).getEquipage().addPersonne(createCrew(sion));
+
+
+                    }
+
                     break;
 
                 case 6:
@@ -83,6 +105,17 @@ public class Main {
 
                 case 7:
                     name = findExistingShip(fleet);
+
+                    System.out.println("Quel est le nom de la personne que vous voulez supprimer du vaisseau ?");
+                    String np = Keyboard.getString();
+                    while(fleet.getVaisseau(name).getEquipage().getPersonne(np)==null){
+                        System.out.println("Cette personne n'est pas dans l'équipage");
+                        System.out.println("Quel est le nom de la personne que vous voulez supprimer du vaisseau ?");
+                        np = Keyboard.getString();
+                    }
+                    fleet.getVaisseau(name).getEquipage().removePersonne(np);
+                    
+                   
 
                     //demander le nom de la personne
                     // le supprimer du vaisseau UNIQUEMENT
@@ -131,7 +164,20 @@ public class Main {
         return name;
     }
 
-    private static void createCrew(Equipage crew){
+    private static Personne findExistingMember(Equipage eq){
+
+        System.out.println("Quel est le nom de l'agent que vous souhaitez ajouter?");
+        String name = Keyboard.getString();
+        System.out.println(eq.getPersonne(name));
+        while(eq.getPersonne(name) == null){
+            System.out.println("Cette personne n'existe pas.");
+            System.out.println("Quel est le nom de l'agent que vous souhaitez ajouter?");
+            name = Keyboard.getString();
+        }
+        return eq.getPersonne(name);
+    }
+
+    private static Personne createCrew(Equipage crew){
         System.out.print("Nom de la personne : ");
         String name = Keyboard.getString();
         
@@ -194,6 +240,10 @@ public class Main {
             crew.addPersonne(new Libere(name, estHomme, age, null, 0, 0));
             System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
         }
+        Personne p = new Personne(name,estHomme, age,null);
+
+        return p;
+
     }
     
 }
