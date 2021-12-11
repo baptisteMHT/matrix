@@ -24,17 +24,17 @@ public class Equipage {
     }
 
     public void removePersonne(String n){
-        int i = 0;
-        while(personnel.get(i).getNom()!= n){
-            i++;
-            System.out.println("I'm a test");
-        }
-        if(i > personnel.size()){
-            System.out.println("Cette personne n'est pas dans le vaisseau");
+        for (int i = 0; i < personnel.size();i++) {
+            System.out.println(personnel.get(i).getNom());
+            System.out.println(n + "      Vérifie qu'il ressort bien la variable entreé");
+            if (personnel.get(i).getNom() == n){
+                System.out.println("Check that we are inside the if");
+                personnel.remove(i);
+                return;
+            }
 
+        
         }
-        personnel.remove(i);
-
 
 
     }
