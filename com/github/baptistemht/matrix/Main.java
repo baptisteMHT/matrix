@@ -2,6 +2,9 @@ package com.github.baptistemht.matrix;
 
 import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
+
+import java.util.ArrayList;
+
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
 import com.github.baptistemht.matrix.ships.Equipage;
@@ -19,13 +22,17 @@ public class Main {
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
-        //Pour les test et gagner du temps 
-        Sion Didier = new Sion("Didier",true,45,null,null);
+
+
+        //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
+        Sion Didier = new Sion("didier",true,45,null,null);
         Vaisseau V = new Vaisseau("v",5);
         fleet.addVaisseau(V);
         fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
-
-
+        Sion a = new Sion("a",true,45,null,null);
+       
+        fleet.getVaisseau("v").getEquipage().addPersonne(a);
+        //--------------------------------------------------------------------------
         //Affichage du menu
         System.out.println("Bienvenue in the Matrice");
         displayMenu();
@@ -117,7 +124,9 @@ public class Main {
                         System.out.println("Cette personne n'est pas dans l'équipage");
                         System.out.println("Quel est le nom de la personne que vous voulez supprimer du vaisseau ?");
                         np = Keyboard.getString();
+                        
                     }
+                    System.out.println(np + "      check if we get the good variable input ");
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
                     
                     

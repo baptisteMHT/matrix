@@ -3,7 +3,7 @@ package com.github.baptistemht.matrix.ships;
 public class Vaisseau {
 
     private final String nom;
-    private final Equipage equipage;
+    private Equipage equipage; //enlever le final pour voir si ca vient de là
 
     public Vaisseau(String nom, int limit){
         this.nom = nom;
