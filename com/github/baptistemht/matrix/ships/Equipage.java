@@ -7,7 +7,7 @@ import com.github.baptistemht.matrix.crew.Personne;
 public class Equipage {
     //attributs
     private final int limit;
-    private final ArrayList<Personne> personnel;
+    private ArrayList<Personne> personnel; //j'ai enlever le final car peut etre que c ca qui  pue
     //methods
 
     public Equipage(int limit){
@@ -25,12 +25,29 @@ public class Equipage {
 
     public void removePersonne(String n){
         int i = 0;
-        while (i< personnel.size() && personnel.get(i).getNom() != n){
+        while(personnel.get(i).getNom()!= n){
             i++;
+            System.out.println("I'm a test");
+        }
+        if(i > personnel.size()){
+            System.out.println("Cette personne n'est pas dans le vaisseau");
+
         }
         personnel.remove(i);
-        i= 0;
+
+
+
     }
+    /*
+            while (i< personnel.size() && personnel.get(i).getNom() != n){
+            i++;
+            System.out.println("I'm a test");
+        }
+        System.out.println("I'm another test");
+        personnel.remove(i);
+        i= 0;
+
+        */
 
     public Personne getPersonne(String n){
         if(personnel.size() == 0) return null;
