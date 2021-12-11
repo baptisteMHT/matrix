@@ -19,6 +19,11 @@ public class Main {
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
+        //Pour les test et gagner du temps 
+        Sion Didier = new Sion("Didier",true,45,null,null);
+        Vaisseau V = new Vaisseau("v",5);
+        fleet.addVaisseau(V);
+        fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
 
 
         //Affichage du menu
@@ -115,8 +120,8 @@ public class Main {
                     }
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
                     
-                   
-
+                    
+                   // en cours car removePersonne semble ne pas fonctionner 7
                     //demander le nom de la personne
                     // le supprimer du vaisseau UNIQUEMENT
                     break;
@@ -245,5 +250,8 @@ public class Main {
         return p;
 
     }
+
+    
+
     
 }
