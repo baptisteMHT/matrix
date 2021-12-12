@@ -2,9 +2,6 @@ package com.github.baptistemht.matrix;
 
 import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
-
-import java.util.ArrayList;
-
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
 import com.github.baptistemht.matrix.ships.Equipage;
@@ -23,16 +20,16 @@ public class Main {
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
 
-
-        //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
-        Sion Didier = new Sion("didier",true,45,null,null);
-        Vaisseau V = new Vaisseau("v",5);
-        fleet.addVaisseau(V);
-        fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
-        Sion a = new Sion("a",true,45,null,null);
-       
-        fleet.getVaisseau("v").getEquipage().addPersonne(a);
         //--------------------------------------------------------------------------
+        //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
+        //Sion Didier = new Sion("didier",true,45,null,null);
+        //Vaisseau V = new Vaisseau("v",5);
+        //fleet.addVaisseau(V);
+        //fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
+        //Sion a = new Sion("a",true,45,null,null);
+        //fleet.getVaisseau("v").getEquipage().addPersonne(a);
+        //--------------------------------------------------------------------------
+
         //Affichage du menu
         System.out.println("Bienvenue in the Matrice");
         displayMenu();
@@ -85,6 +82,7 @@ public class Main {
                     System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
                     System.out.println("1: Oui");
                     System.out.println("2: Non");
+                    
                     choix = Keyboard.getInt();
                     while(choix != 1 && choix != 2){
                         System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
@@ -92,18 +90,11 @@ public class Main {
                         System.out.println("2: Non");
                         choix = Keyboard.getInt();
                     }
+
                     if (choix==1){
-
                         fleet.getVaisseau(name).getEquipage().addPersonne(findExistingMember(sion));
-                    
-                    
-                        
-
-                    }
-                    if (choix ==2){
+                    }else {
                         fleet.getVaisseau(name).getEquipage().addPersonne(createCrew(sion));
-
-
                     }
 
                     break;
@@ -126,20 +117,18 @@ public class Main {
                         np = Keyboard.getString();
                         
                     }
-                   // System.out.println(np + "      check if we get the good variable input ");
+                    
+                    
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
                     break;
                 
                 default:
                     System.out.println("Choix incorrect.");
                     break;
-
             }
-
             displayMenu();
             choix = Keyboard.getInt();
         }
-
         System.out.println("Goodbye my friend...");
     }
 
@@ -174,7 +163,6 @@ public class Main {
     }
 
     private static Personne findExistingMember(Equipage eq){
-
         System.out.println("Quel est le nom de l'agent que vous souhaitez ajouter?");
         String name = Keyboard.getString();
         System.out.println(eq.getPersonne(name));
@@ -196,10 +184,8 @@ public class Main {
             name = Keyboard.getString();
         }
 
-
         System.out.print("Age de la personne : ");
         int age = Keyboard.getInt();
-
         
         System.out.println("Sexe de la personne :");
         System.out.println("1: Masculin");
@@ -223,8 +209,7 @@ public class Main {
             estHomme = true;
         }else{
             estHomme = false;
-        }
-        
+        } 
 
         System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
         System.out.println("1: Sion");
@@ -249,10 +234,8 @@ public class Main {
             crew.addPersonne(new Libere(name, estHomme, age, null, 0, 0));
             System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
         }
-        Personne p = new Personne(name,estHomme, age,null);
 
-        return p;
-
+        return new Personne(name,estHomme, age,null);
     }
 
     
