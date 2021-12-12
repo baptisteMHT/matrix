@@ -126,13 +126,8 @@ public class Main {
                         np = Keyboard.getString();
                         
                     }
-                    System.out.println(np + "      check if we get the good variable input ");
+                   // System.out.println(np + "      check if we get the good variable input ");
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
-                    
-                    
-                   // en cours car removePersonne semble ne pas fonctionner 7
-                    //demander le nom de la personne
-                    // le supprimer du vaisseau UNIQUEMENT
                     break;
                 
                 default:

@@ -25,10 +25,10 @@ public class Equipage {
 
     public void removePersonne(String n){
         for (int i = 0; i < personnel.size();i++) {
-            System.out.println(personnel.get(i).getNom());
-            System.out.println(n + "      Vérifie qu'il ressort bien la variable entreé");
-            if (personnel.get(i).getNom() == n){
-                System.out.println("Check that we are inside the if");
+        //    System.out.println(personnel.get(i).getNom());
+        // System.out.println(n + "      Vérifie qu'il ressort bien la variable entreé");
+            if (personnel.get(i).getNom().equalsIgnoreCase(n)){
+                //System.out.println("Check that we are inside the if");
                 personnel.remove(i);
                 return;
             }
