@@ -130,6 +130,23 @@ public class Main {
             choix = Keyboard.getInt();
         }
         System.out.println("Goodbye my friend...");
+
+
+
+         /* -----------------------------------------------------------------------------------------------------
+         
+         
+         deuxieme mission:
+    Je sais pas si faut le mettre après ce main ou ailleurs
+    
+
+    */
+
+    System.out.println("Deuxième mission");
+    displayMenu2();
+    String s = Keyboard.getString();
+
+    
     }
 
     private static void displayMenu(){
@@ -145,7 +162,23 @@ public class Main {
         System.out.println("8: Fin");
         System.out.println("");
         System.out.print("> ");
+
     }
+    //deuxieme menu 
+    private static void displayMenu2(){
+        System.out.println("");
+        System.out.println("Que voulez vous faire ?");
+        System.out.println("1: Afficher les membres d'équipages pouvant s'infiltrer dans la matrix");              
+        System.out.println("2: Infiltrer un mepmbre dans la matrix");
+        System.out.println("3: Afficher les membres d'équipages actuellement dans la matrix"); //doit  on mettre les 3 agents de bases dans cette liste ? 
+        System.out.println("4: Sortir un membre de la matrix");
+        System.out.println("5: Afficher la matrix");
+        System.out.println("6: Fin");
+        System.out.println("");
+        System.out.print("> ");
+
+    }
+    
 
     private static String findExistingShip(Flotte fleet){
         System.out.print("Nom du vaisseau : ");
@@ -236,9 +269,13 @@ public class Main {
         }
 
         return new Personne(name,estHomme, age,null);
+
+
+
+
+
+
+
     }
 
-    
-
-    
 }
