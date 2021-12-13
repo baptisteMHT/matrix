@@ -23,6 +23,7 @@ public class Equipage {
         return personnel;
     }
 
+
     public void removePersonne(String n){
         for (int i = 0; i < personnel.size();i++) {
         //    System.out.println(personnel.get(i).getNom());
