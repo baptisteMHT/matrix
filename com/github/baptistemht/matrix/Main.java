@@ -22,12 +22,19 @@ public class Main {
 
         //--------------------------------------------------------------------------
         //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
-        //Sion Didier = new Sion("didier",true,45,null,null);
-        //Vaisseau V = new Vaisseau("v",5);
-        //fleet.addVaisseau(V);
-        //fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
-        //Sion a = new Sion("a",true,45,null,null);
-        //fleet.getVaisseau("v").getEquipage().addPersonne(a);
+        Libere Eric = new Libere("Eric",true,798,null,4,3);
+        Sion Didier = new Sion("didier",true,45,null,null);
+        Vaisseau V = new Vaisseau("v",5);
+        fleet.addVaisseau(V);
+        fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
+        Sion a = new Sion("a",true,45,null,null);
+        fleet.getVaisseau("v").getEquipage().addPersonne(a);
+        Libere Maurice = new Libere("Maurice",true,4,null,2,2);
+        sion.addPersonne(Eric);
+        sion.addPersonne(Didier);
+        sion.addPersonne(a);
+        sion.addPersonne(Maurice);
+
         //--------------------------------------------------------------------------
 
         //Affichage du menu
@@ -144,7 +151,40 @@ public class Main {
 
     System.out.println("Deuxième mission");
     displayMenu2();
-    String s = Keyboard.getString();
+    int s = Keyboard.getInt();
+    while(s != 6){
+        switch(s){
+            case 1: 
+           for (int i = 0; i<sion.getPersonnel().size(); i++){
+                System.out.println(sion.getPersonnel().get(i).toString()); //il faut maintenant tester si libere ou sion 
+                
+            }
+
+                break;
+
+            case 2:
+
+            break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+            
+            default:
+            System.out.println("Choix incorrect");
+                break;
+        }
+        displayMenu2();
+        s = Keyboard.getInt();
+    }
 
     
     }
