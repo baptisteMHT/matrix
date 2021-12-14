@@ -30,6 +30,7 @@ public class Main {
         Sion a = new Sion("a",true,45,null,null);
         fleet.getVaisseau("v").getEquipage().addPersonne(a);
         Libere Maurice = new Libere("Maurice",true,4,null,2,2);
+        fleet.getVaisseau("v").getEquipage().addPersonne(Maurice);
         sion.addPersonne(Eric);
         sion.addPersonne(Didier);
         sion.addPersonne(a);
@@ -155,13 +156,8 @@ public class Main {
     while(s != 6){
         switch(s){
             case 1: 
-           for (int i = 0; i<sion.getPersonnel().size(); i++){
-               if (sion.getPersonnel().get(i) instanceof Libere){
-                    System.out.println(sion.getPersonnel().get(i).toString()); 
-               }
-                 
-                
-            }
+                afficheInfiltrables(fleet);
+
 
                 break;
 
@@ -320,5 +316,19 @@ public class Main {
 
 
     }
+
+    public static void afficheInfiltrables(Flotte fleet){
+        for (int i = 0; i< fleet.getVaisseaux().size() ; i++){
+            if (fleet.getVaisseaux().get(i).estSecurise()){
+                for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
+                     if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere){
+                         System.out.println(fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k).toString()); 
+                    }
+                 } 
+            }
+         }
+    }
+
+    
 
 }
