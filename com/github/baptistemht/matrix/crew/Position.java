@@ -23,4 +23,8 @@ public class Position {
         return this.x == ((Position) obj).getX() && this.y == ((Position) obj).getY();
     }
 
+    public double distance(Position pos){
+        return Math.sqrt((pos.getX()-this.getX())^2 + (pos.getY()-this.getY())^2);
+    }
+
 }

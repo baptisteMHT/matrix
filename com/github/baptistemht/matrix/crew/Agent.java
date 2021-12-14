@@ -17,8 +17,8 @@ public class Agent extends Personne{
         return efficacite;
     }
 
-    public void setEfficacite(int efficacite) {
-        this.efficacite = efficacite;
+    public void reduireEfficacite() {
+        this.efficacite -= 1;
     }
 
     public Position getPosition() {
