@@ -155,7 +155,7 @@ public class Main {
     System.out.println("Deuxième mission");
     displayMenu2();
     int s = Keyboard.getInt();
-    while(s != 6){
+    while(s != 7){
         switch(s){
             case 1: 
                 afficheInfiltrables(fleet);
@@ -163,7 +163,7 @@ public class Main {
 
                 break;
 
-            case 2:
+            case 2: //vérifier si peut infiltrer puis utiliser infiltré de matrix
 
             break;
 
@@ -171,11 +171,14 @@ public class Main {
 
                 break;
 
-            case 4:
+            case 4: // penser a faire +1 au nombre d'entrée sortie
 
                 break;
 
-            case 5:
+            case 5: // afficher la matrix Utiliser la fonction faite dans matrix
+
+                break;
+            case 6: // afficher dans l'ordre alphabétique/ Utiliser la fonction faite dans matrix
 
                 break;
             
@@ -214,7 +217,8 @@ public class Main {
         System.out.println("3: Afficher les membres d'équipages actuellement dans la matrix"); //doit  on mettre les 3 agents de bases dans cette liste ? 
         System.out.println("4: Sortir un membre de la matrix");
         System.out.println("5: Afficher la matrix");
-        System.out.println("6: Fin");
+        System.out.println("6: Afficher les membres de la matrix par ordre alphabétique");
+        System.out.println("7: Fin");
         System.out.println("");
         System.out.print("> ");
 
