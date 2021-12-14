@@ -1,5 +1,7 @@
 package com.github.baptistemht.matrix.ships;
 
+import com.github.baptistemht.matrix.crew.Sion;
+
 public class Vaisseau {
 
     private final String nom;
@@ -16,6 +18,13 @@ public class Vaisseau {
 
     public Equipage getEquipage() {
         return equipage;
+    }
+
+    public boolean estSecurise(){
+        for(int i=0; i<equipage.getPersonnel().size(); i++){
+            if(equipage.getPersonnel().get(i) instanceof Sion) return true;
+        }
+        return false;
     }
 
     @Override
