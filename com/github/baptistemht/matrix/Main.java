@@ -148,7 +148,7 @@ public class Main {
                         if (fleet.getVaisseaux().get(i).estSecurise() ){
 
                             for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
-                                if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere && fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k).getNom() == nom){
+                                if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere && fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k).getNom().equalsIgnoreCase(nom)){
                                     matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)); 
                                 }
                             } 
