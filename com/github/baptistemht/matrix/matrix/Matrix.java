@@ -20,6 +20,7 @@ public class Matrix {
     }
 
     public void infiltrer(Libere membre){
+        membre.setPosition(new Position(new Random().nextInt(10), new Random().nextInt(10)));
         personnes.add(membre);
     }
 
