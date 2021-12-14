@@ -16,6 +16,9 @@ public class Personne {
         this.age = age;
         this.grade = grade;
     }
+    public String toString(){
+        return "Nom: " + nom +  "   Homme: " + estHomme  + "    Age: " + age + "    Grade:  " + grade;
+    }
 
     public String getNom() {
         return nom;
@@ -39,7 +42,6 @@ public class Personne {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
-
 
 
     

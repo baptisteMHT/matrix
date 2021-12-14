@@ -156,7 +156,10 @@ public class Main {
         switch(s){
             case 1: 
            for (int i = 0; i<sion.getPersonnel().size(); i++){
-                System.out.println(sion.getPersonnel().get(i).toString()); //il faut maintenant tester si libere ou sion 
+               if (sion.getPersonnel().get(i) instanceof Libere){
+                    System.out.println(sion.getPersonnel().get(i).toString()); 
+               }
+                 
                 
             }
 
