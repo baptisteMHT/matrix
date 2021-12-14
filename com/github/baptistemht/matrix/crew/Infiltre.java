@@ -5,27 +5,24 @@ import java.util.Random;
 public class Infiltre extends Personne{
 
     private final int efficacite;
-    private final int x;
-    private final int y;
+    private Position position;
 
-    public Infiltre(String nom, boolean estHomme, int age, Grade grade) {
+    public Infiltre(String nom, boolean estHomme, int age, Grade grade, Position position) {
         super(nom, estHomme, age, grade);
-        this.efficacite = new Random().nextInt(6);
-        this.x          = new Random().nextInt(10);
-        this.y          = new Random().nextInt(10);
+        this.efficacite     = new Random().nextInt(6);
+        this.position       = position;
     }
 
     public int getEfficacite() {
         return efficacite;
     }
 
-    public int getX() {
-        return x;
+    public Position getPosition() {
+        return position;
     }
 
-    public int getY() {
-        return y;
+    public void setPosition(Position position) {
+        this.position = position;
     }
-
     
 }
