@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Infiltre extends Personne{
 
-    private final int efficacite;
+    private int efficacite;
     private Position position;
 
     public Infiltre(String nom, boolean estHomme, int age, Grade grade, Position position) {
@@ -15,6 +15,10 @@ public class Infiltre extends Personne{
 
     public int getEfficacite() {
         return efficacite;
+    }
+
+    public void setEfficacite(int efficacite) {
+        this.efficacite = efficacite;
     }
 
     public Position getPosition() {

@@ -20,16 +20,18 @@ public class Main {
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
 
+
+
         //--------------------------------------------------------------------------
         //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
-        Libere Eric = new Libere("Eric",true,798,null,4,3);
+        Libere Eric = new Libere("Eric",true,798,null);
         Sion Didier = new Sion("didier",true,45,null,null);
         Vaisseau V = new Vaisseau("v",5);
         fleet.addVaisseau(V);
         fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
         Sion a = new Sion("a",true,45,null,null);
         fleet.getVaisseau("v").getEquipage().addPersonne(a);
-        Libere Maurice = new Libere("Maurice",true,4,null,2,2);
+        Libere Maurice = new Libere("Maurice",true,4,null);
         fleet.getVaisseau("v").getEquipage().addPersonne(Maurice);
         sion.addPersonne(Eric);
         sion.addPersonne(Didier);
@@ -303,7 +305,7 @@ public class Main {
             crew.addPersonne(new Sion(name, estHomme, age, null, null));
             System.out.println(name + " ajouté à la liste du personnel. (Type: Sion, Homme: " + estHomme + ", Age: " +age + ")");
         }else{
-            crew.addPersonne(new Libere(name, estHomme, age, null, 0, 0));
+            crew.addPersonne(new Libere(name, estHomme, age, null));
             System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
         }
 
