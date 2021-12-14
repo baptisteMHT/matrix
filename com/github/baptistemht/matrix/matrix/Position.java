@@ -1,4 +1,6 @@
-package com.github.baptistemht.matrix.crew;
+package com.github.baptistemht.matrix.matrix;
+
+import java.util.Random;
 
 public class Position {
 
@@ -8,6 +10,10 @@ public class Position {
     public Position(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    public Position(){
+        this(new Random().nextInt(10), new Random().nextInt(10));
     }
 
     public int getX() {

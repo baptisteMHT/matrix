@@ -301,20 +301,16 @@ public class Main {
         }
 
         if(choix == 1){
-            crew.addPersonne(new Sion(name, estHomme, age, null, null));
+            Sion s = new Sion(name,estHomme,age,null,null);
+            crew.addPersonne(s);
             System.out.println(name + " ajouté à la liste du personnel. (Type: Sion, Homme: " + estHomme + ", Age: " +age + ")");
+            return s;
         }else{
-            crew.addPersonne(new Libere(name, estHomme, age, null));
+            Libere l = new Libere(name, estHomme,age,null);
+            crew.addPersonne(l);
             System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
+            return l;
         }
-
-        return new Personne(name,estHomme, age,null);
-
-
-
-
-
-
 
     }
 

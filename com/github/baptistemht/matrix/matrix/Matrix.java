@@ -1,12 +1,10 @@
 package com.github.baptistemht.matrix.matrix;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.github.baptistemht.matrix.crew.Agent;
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Personne;
-import com.github.baptistemht.matrix.crew.Position;
 
 public class Matrix {
     
@@ -14,13 +12,13 @@ public class Matrix {
 
     public Matrix(){
         this.personnes = new ArrayList<Personne>();
-        this.personnes.add(new Agent("agent_0", true, 36, new Position(new Random().nextInt(10), new Random().nextInt(10))));
-        this.personnes.add(new Agent("agent_1", true, 29, new Position(new Random().nextInt(10), new Random().nextInt(10))));
-        this.personnes.add(new Agent("agent_2", true, 48, new Position(new Random().nextInt(10), new Random().nextInt(10))));
+        this.personnes.add(new Agent("agent_0", true, 36, new Position()));
+        this.personnes.add(new Agent("agent_1", true, 29, new Position()));
+        this.personnes.add(new Agent("agent_2", true, 48, new Position()));
     }
 
     public void infiltrer(Libere membre){
-        membre.setPosition(new Position(new Random().nextInt(10), new Random().nextInt(10)));
+        membre.setPosition(new Position());
         personnes.add(membre);
     }
 
