@@ -15,11 +15,16 @@ public class Matrix {
     }
 
     public void infiltrer(Libere membre){
-
+        personnes.add(membre);
     }
 
     public void sortir(String nom){
-
+        for(int i = 0; i<personnes.size(); i++){
+            if(personnes.get(i).getNom().equalsIgnoreCase(nom) && personnes.get(i) instanceof Libere){
+                personnes.remove(i);
+                return;
+            }
+        }
     }
 
     public Agent agentPlusProche(Libere membre){
@@ -38,12 +43,25 @@ public class Matrix {
         return true;
     }
 
-    public void afficherMatrice(){
+    public ArrayList<Personne> membresInfiltres(){
+        ArrayList<Personne> membres = new ArrayList<>();
+        for(int i = 0; i<personnes.size(); i++){
+            if(personnes.get(i) instanceof Libere)  membres.add(personnes.get(i));
+        }
+        return membres;
+    }
 
+    public void afficherMatrice(){
+        
     }
 
     public void afficherMembres(){
-
+        for(int i = 0; i<personnes.size(); i++){
+            if(personnes.get(i) instanceof Libere){
+                System.out.println(i + ". " + personnes.get(i));
+                return;
+            }
+        }
     }
 
     public void afficherMembresTries(){
