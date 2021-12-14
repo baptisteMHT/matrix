@@ -4,6 +4,7 @@ import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
+import com.github.baptistemht.matrix.matrix.Matrix;
 import com.github.baptistemht.matrix.ships.Equipage;
 import com.github.baptistemht.matrix.crew.Personne;
 
@@ -19,6 +20,8 @@ public class Main {
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
+        Matrix matrix = new Matrix();
+        
 
 
 
@@ -164,14 +167,35 @@ public class Main {
                 break;
 
             case 2: //vérifier si peut infiltrer puis utiliser infiltré de matrix
+            for (int i = 0; i< fleet.getVaisseaux().size() ; i++){
+                if (fleet.getVaisseaux().get(i).estSecurise()){
+                    for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
+                         if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere){
+                             matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)); 
+                        }
+                     } 
+                }
+             }
+
 
             break;
 
             case 3:
+                matrix.afficherMembres();
 
                 break;
 
             case 4: // penser a faire +1 au nombre d'entrée sortie
+*
+                System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                String nom = Keyboard.getString();
+                while(matrix.getMembre(nom) == false){
+                    System.out.println("Cette personne n'est pas dans la liste");
+                    System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                    nom = Keyboard.getString();
+
+                }
+
 
                 break;
 
