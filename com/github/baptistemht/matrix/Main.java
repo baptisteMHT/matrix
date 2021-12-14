@@ -4,6 +4,7 @@ import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
+import com.github.baptistemht.matrix.matrix.Matrix;
 import com.github.baptistemht.matrix.ships.Equipage;
 import com.github.baptistemht.matrix.crew.Personne;
 
@@ -19,6 +20,8 @@ public class Main {
         // Nouvelle flotte et Liste du personnel
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
+        Matrix matrix = new Matrix();
+        
 
 
 
@@ -48,7 +51,7 @@ public class Main {
         String name;
 
         //utilisation de switch pour les différentes réponses
-        while(choix != 8){
+        while(choix != 14){
 
             switch(choix){
                 case 1:
@@ -131,7 +134,51 @@ public class Main {
                     
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
                     break;
-                
+
+                case 8:
+                    afficheInfiltrables(fleet);
+
+                    break;
+
+                case 9:
+                    for (int i = 0; i< fleet.getVaisseaux().size() ; i++){
+                        if (fleet.getVaisseaux().get(i).estSecurise()){
+                            for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
+                                if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere){
+                                    matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)); 
+                                }
+                            } 
+                        }
+                    }
+                    break;
+
+                case 10:
+                    matrix.afficherMembres();
+                    break;
+
+                case 11:
+                    System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                    String nom = Keyboard.getString();
+                    while(matrix.getMembre(nom) == null){
+                        System.out.println("Cette personne n'est pas dans la liste");
+                        System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                        nom = Keyboard.getString();
+
+                    }
+                    
+                    matrix.sortir(nom);
+                    ((Libere) sion.getPersonne(nom)).incrementES();
+
+                    break;
+
+                case 12:
+                    matrix.afficherMatrice();
+                    break;
+
+                case 13:
+                    matrix.afficherMembresTries();
+                    break;
+                    
                 default:
                     System.out.println("Choix incorrect.");
                     break;
@@ -140,57 +187,9 @@ public class Main {
             choix = Keyboard.getInt();
         }
         System.out.println("Goodbye my friend...");
+        
 
 
-
-         /* -----------------------------------------------------------------------------------------------------
-         
-         
-         deuxieme mission:
-    Je sais pas si faut le mettre après ce main ou ailleurs
-    
-
-    */
-
-    System.out.println("Deuxième mission");
-    displayMenu2();
-    int s = Keyboard.getInt();
-    while(s != 7){
-        switch(s){
-            case 1: 
-                afficheInfiltrables(fleet);
-
-
-                break;
-
-            case 2: //vérifier si peut infiltrer puis utiliser infiltré de matrix
-
-            break;
-
-            case 3:
-
-                break;
-
-            case 4: // penser a faire +1 au nombre d'entrée sortie
-
-                break;
-
-            case 5: // afficher la matrix Utiliser la fonction faite dans matrix
-
-                break;
-            case 6: // afficher dans l'ordre alphabétique/ Utiliser la fonction faite dans matrix
-
-                break;
-            
-            default:
-            System.out.println("Choix incorrect");
-                break;
-        }
-        displayMenu2();
-        s = Keyboard.getInt();
-    }
-
-    
     }
 
     private static void displayMenu(){
@@ -203,26 +202,18 @@ public class Main {
         System.out.println("5: Ajouter un membre du personnel dans un certain vaisseau");
         System.out.println("6: Afficher l'ensemble des personnes d'un vaisseau");
         System.out.println("7: Supprimer un membre d'un équipage");
-        System.out.println("8: Fin");
+        System.out.println("8: Afficher les membres d'équipages pouvant s'infiltrer dans la matrix");              
+        System.out.println("9: Infiltrer un membre dans la matrix");
+        System.out.println("10: Afficher les membres d'équipages actuellement dans la matrix"); //doit  on mettre les 3 agents de bases dans cette liste ? 
+        System.out.println("11: Sortir un membre de la matrix");
+        System.out.println("12: Afficher la matrix");
+        System.out.println("13: Afficher les membres de la matrix par ordre alphabétique");
+        System.out.println("14: Fin");
         System.out.println("");
         System.out.print("> ");
 
     }
-    //deuxieme menu 
-    private static void displayMenu2(){
-        System.out.println("");
-        System.out.println("Que voulez vous faire ?");
-        System.out.println("1: Afficher les membres d'équipages pouvant s'infiltrer dans la matrix");              
-        System.out.println("2: Infiltrer un mepmbre dans la matrix");
-        System.out.println("3: Afficher les membres d'équipages actuellement dans la matrix"); //doit  on mettre les 3 agents de bases dans cette liste ? 
-        System.out.println("4: Sortir un membre de la matrix");
-        System.out.println("5: Afficher la matrix");
-        System.out.println("6: Afficher les membres de la matrix par ordre alphabétique");
-        System.out.println("7: Fin");
-        System.out.println("");
-        System.out.print("> ");
 
-    }
     
 
     private static String findExistingShip(Flotte fleet){
@@ -334,6 +325,7 @@ public class Main {
             }
          }
     }
+
 
     
 
