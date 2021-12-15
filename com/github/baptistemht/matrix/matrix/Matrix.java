@@ -19,12 +19,14 @@ public class Matrix {
 
     public void infiltrer(Libere membre){
         membre.setPosition(trouverPositionLibre());
+        if(estInfecte(membre)) membre.setEstInfecte(true);
         personnes.add(membre);
     }
 
     public boolean sortir(String nom){
         for(int i = 0; i<personnes.size(); i++){
             if(personnes.get(i).getNom().equalsIgnoreCase(nom) && personnes.get(i) instanceof Libere){
+                if(((Libere) personnes.get(i)).isEstInfecte()) return false;
                 personnes.remove(i);
                 return true;
             }
@@ -42,7 +44,6 @@ public class Matrix {
     }
 
     public void afficherMatrice(){
-        
         System.out.println("");
         System.out.println("    0  1  2  3  4  5  6  7  8  9  ");
         for(int i = 0; i<10; i++){
@@ -54,7 +55,11 @@ public class Matrix {
                 if(p instanceof Agent){
                     System.out.print(" A" + ((Agent) p).getEfficacite());
                 }else if(p instanceof Libere){
-                    System.out.print(" M ");
+                    if(((Libere) p).isEstInfecte()){
+                        System.out.print(" m ");
+                    }else{
+                        System.out.print(" M ");
+                    }
                 }else {
                     System.out.print(" . ");
                 }
@@ -99,16 +104,22 @@ public class Matrix {
     }
     
     private double distanceAgent(Agent agent, Libere membre){
-        return Math.sqrt(agent.getPosition().distance(membre.getPosition()));
+        double d = agent.getPosition().distance(membre.getPosition());
+        System.out.println(membre.getNom() + " | " + agent.getNom() + " " + agent.getEfficacite() + " | dist : " + d);
+        return d;
     }
 
     private Agent agentPlusProche(Libere membre){
         Agent plusProche = null;
         for(int i = 0; i<personnes.size(); i++){
             if(personnes.get(i) instanceof Agent){
-                if(plusProche == null || distanceAgent(plusProche, membre) > distanceAgent((Agent) personnes.get(i), membre)){
+                if(plusProche == null){
                     plusProche = (Agent) personnes.get(i);
-                }
+                }else{
+                    if(distanceAgent(plusProche, membre) > distanceAgent((Agent) personnes.get(i), membre)){
+                        plusProche = (Agent) personnes.get(i);
+                    }
+                }             
             }
         }
         return plusProche;

@@ -169,9 +169,17 @@ public class Main {
                         n = Keyboard.getString();
 
                     }
+
+                    Libere membre = matrix.getMembre(n);
                     
-                    matrix.sortir(n);
-                    ((Libere) sion.getPersonne(n)).incrementES();
+                    boolean res = matrix.sortir(n);
+
+                    if(res){
+                        ((Libere) sion.getPersonne(n)).incrementES();
+                    }else{
+                        System.out.println(membre.getNom() + " est infecté. Il ne peut pas sortir de la matrice.");
+                        ((Libere) sion.getPersonne(n)).setEstInfecte(true);
+                    }
 
                     break;
 

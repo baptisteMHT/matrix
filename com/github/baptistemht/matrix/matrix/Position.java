@@ -30,7 +30,7 @@ public class Position {
     }
 
     public double distance(Position pos){
-        return Math.sqrt((pos.getX()-this.getX())^2 + (pos.getY()-this.getY())^2);
+        return Math.sqrt(Math.pow(pos.getX()-this.getX(), 2) + Math.pow(pos.getY()-this.getY(), 2));
     }
 
     @Override
