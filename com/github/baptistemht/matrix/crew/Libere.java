@@ -10,6 +10,7 @@ public class Libere extends Personne {
     private Grade grade;
     private int entreesSorties;
     private Position position;
+    private boolean estInfecte;
     //methods
 
     public Libere(String nom, boolean estHomme, int age, Grade grade){
@@ -19,6 +20,7 @@ public class Libere extends Personne {
         this.grade          = grade;
         this.entreesSorties = 0;
         this.position       = null;
+        this.estInfecte     = false;
     }    
 
     public int getES() {
@@ -35,6 +37,14 @@ public class Libere extends Personne {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public boolean isEstInfecte() {
+        return estInfecte;
+    }
+
+    public void setEstInfecte(boolean estInfecte) {
+        this.estInfecte = estInfecte;
     }
 
     @Override
