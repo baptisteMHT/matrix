@@ -2,11 +2,13 @@ package com.github.baptistemht.matrix;
 
 import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
+import com.github.baptistemht.matrix.crew.Grade;
 import com.github.baptistemht.matrix.crew.Libere;
 import com.github.baptistemht.matrix.crew.Sion;
 import com.github.baptistemht.matrix.matrix.Matrix;
 import com.github.baptistemht.matrix.ships.Equipage;
 import com.github.baptistemht.matrix.crew.Personne;
+import com.github.baptistemht.matrix.crew.Poste;
 
 import in.keyboard.Keyboard;
 
@@ -44,7 +46,8 @@ public class Main {
         //--------------------------------------------------------------------------
 
         //Affichage du menu
-        System.out.println("Bienvenue in the Matrice");
+        System.out.println(" Matrix v1.0 - Par Mathys et Baptiste");
+        System.out.println("Bienvenue dans la Matrice !");
         displayMenu();
 
         int choix = Keyboard.getInt();
@@ -64,13 +67,13 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.print("Choisissez un nom de vaisseau : ");
+                    System.out.print("Nom du vaisseau : ");
                     name = Keyboard.getString();
 
                     
                     while(fleet.getVaisseau(name) != null){
                         System.out.println("Ce vaisseau existe déjà.");
-                        System.out.print("Choissisez un nom de vaisseau : ");
+                        System.out.print("Nom du vaisseau : ");
                         name = Keyboard.getString();
                     }
 
@@ -83,6 +86,7 @@ public class Main {
                         System.out.println("Il n'y a aucun vaisseau d'enregistré.");
                         break;
                     }
+
                     System.out.println("Liste des vaisseaux : ");
                     for(int i = 0; i<fleet.getVaisseaux().size(); i++){
                         System.out.println(i + ". " + fleet.getVaisseaux().get(i));
@@ -90,19 +94,16 @@ public class Main {
                     break;
 
                 case 5:
-                    
-                    name = findExistingShip(fleet);
-                    System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
-                    System.out.println("1: Oui");
-                    System.out.println("2: Non");
-                    
-                    choix = Keyboard.getInt();
-                    while(choix != 1 && choix != 2){
-                        System.out.println("Le membre d'équipage que vous voulez ajouter à votre vaisseau existe-il déjà ?");
+
+                    do {
+                        name = findExistingShip(fleet);
+                        System.out.println("Ajouter un membre existant ?");
                         System.out.println("1: Oui");
                         System.out.println("2: Non");
+                        System.out.println("");
+                        System.out.print("> ");           
                         choix = Keyboard.getInt();
-                    }
+                    } while (choix != 1 && choix != 2);
 
                     if (choix==1){
                         fleet.getVaisseau(name).getEquipage().addPersonne(findExistingMember(sion));
@@ -122,11 +123,11 @@ public class Main {
                 case 7:
                     name = findExistingShip(fleet);
 
-                    System.out.println("Nom de la personne que vous voulez supprimer du vaisseau:");
+                    System.out.print("Nom de la personne à supprimer du vaisseau : ");
                     String np = Keyboard.getString();
                     while(fleet.getVaisseau(name).getEquipage().getPersonne(np)==null){
                         System.out.println("Cette personne n'est pas dans l'équipage");
-                        System.out.println("Nom de la personne que vous voulez supprimer du vaisseau:");
+                        System.out.print("Nom de la personne à supprimer du vaisseau : ");
                         np = Keyboard.getString();
                     }
                     
@@ -140,7 +141,7 @@ public class Main {
                     break;
 
                 case 9:
-                    System.out.println("Nom de la personne que vous voulez infiltrer:");
+                    System.out.print("Nom de la personne à infiltrer : ");
                     String nom = Keyboard.getString();
 
                     boolean done = false;
@@ -166,7 +167,11 @@ public class Main {
                         }
                     }
 
-                    if(!done) System.out.println("Le nom est incorrect ou le membre déjà infiltré.");
+                    if(done){
+                        System.out.println(nom + " vient d'infiltrer la matrice.");
+                    }else{
+                        System.out.println("Le nom est incorrect ou le membre déjà infiltré.");
+                    }
 
                     break;
 
@@ -177,14 +182,13 @@ public class Main {
 
                     break;
                 case 11:
-                    System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                    System.out.print("Nom du membre à faire sortir : ");
                     String n = Keyboard.getString();
                     
                     while(matrix.getMembre(n) == null){
-                        System.out.println("Cette personne n'est pas dans la liste");
-                        System.out.println("Nom du membre libre que vous voulez faire sortir:");
+                        System.out.println("Cette personne n'est pas infiltrée.");
+                        System.out.print("Nom du membre à faire sortir : ");
                         n = Keyboard.getString();
-
                     }
 
                     Libere membre = matrix.getMembre(n);
@@ -213,8 +217,6 @@ public class Main {
             choix = Keyboard.getInt();
         }
         System.out.println("Goodbye my friend...");
-        
-
 
     }
 
@@ -228,16 +230,15 @@ public class Main {
         System.out.println("5: Ajouter un membre du personnel dans un certain vaisseau");
         System.out.println("6: Afficher l'ensemble des personnes d'un vaisseau");
         System.out.println("7: Supprimer un membre d'un équipage");
-        System.out.println("8: Afficher les membres d'équipages pouvant s'infiltrer dans la matrix");              
-        System.out.println("9: Infiltrer un membre dans la matrix");
-        System.out.println("10: Afficher les membres d'équipages actuellement dans la matrix"); //doit  on mettre les 3 agents de bases dans cette liste ? 
-        System.out.println("11: Sortir un membre de la matrix");
-        System.out.println("12: Afficher la matrix");
-        System.out.println("13: Afficher les membres de la matrix par ordre alphabétique");
+        System.out.println("8: Afficher les membres d'équipages pouvant s'infiltrer dans la matrice");              
+        System.out.println("9: Infiltrer un membre dans la matrice");
+        System.out.println("10: Afficher les membres d'équipages infiltrés dans la matrice"); 
+        System.out.println("11: Sortir un membre de la matrice");
+        System.out.println("12: Afficher la matrice");
+        System.out.println("13: Afficher les membres de la matrice par ordre alphabétique");
         System.out.println("14: Fin");
         System.out.println("");
         System.out.print("> ");
-
     }
 
     
@@ -258,45 +259,40 @@ public class Main {
     }
 
     private static Personne findExistingMember(Equipage eq){
-        System.out.println("Quel est le nom de l'agent que vous souhaitez ajouter?");
+        System.out.print("Nom de l'agent à ajouter : ");
         String name = Keyboard.getString();
-        System.out.println(eq.getPersonne(name));
+
         while(eq.getPersonne(name) == null){
             System.out.println("Cette personne n'existe pas.");
-            System.out.println("Quel est le nom de l'agent que vous souhaitez ajouter?");
+            System.out.print("Nom de l'agent à ajouter : ");
             name = Keyboard.getString();
         }
         return eq.getPersonne(name);
     }
 
     private static Personne createCrew(Equipage crew){
-        System.out.print("Nom de la personne : ");
+        System.out.print("Nom : ");
         String name = Keyboard.getString();
         
         while(crew.getPersonne(name) != null){
             System.out.println("Ce nom existe déjà.");
-            System.out.print("Nom de la personne : ");
+            System.out.print("Nom : ");
             name = Keyboard.getString();
         }
 
-        System.out.print("Age de la personne : ");
+        System.out.print("Age : ");
         int age = Keyboard.getInt();
-        
-        System.out.println("Sexe de la personne :");
-        System.out.println("1: Masculin");
-        System.out.println("2: Féminin");
-        System.out.println("");
-        System.out.print("> ");
-        int choix = Keyboard.getInt();
-        
-        while(choix != 1 && choix != 2){
-            System.out.println("Sexe de la personne :");
+
+        int choix;
+
+        do{
+            System.out.println("Sexe :");
             System.out.println("1: Masculin");
             System.out.println("2: Féminin");
             System.out.println("");
             System.out.print("> ");
             choix = Keyboard.getInt();
-        }
+        }while(choix != 1 && choix != 2);
 
         boolean estHomme;
 
@@ -304,33 +300,45 @@ public class Main {
             estHomme = true;
         }else{
             estHomme = false;
-        } 
+        }
 
-        System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
-        System.out.println("1: Sion");
-        System.out.println("2: Membre libéré");
-        System.out.println("");
-        System.out.print("> ");
-        choix = Keyboard.getInt();
+        System.out.print("Grade ("+ Grade.listeGrades() +") : ");
+        Grade grade = Grade.fromString(Keyboard.getString());
         
-        while(choix != 1 && choix != 2){
+        while(grade == null){
+            System.out.println("Ce grade n'existe pas.");
+            System.out.print("Grade : ");
+            grade = Grade.fromString(Keyboard.getString());
+        }
+        
+
+        do{
             System.out.println("Voulez vous créer un Sion ou un membre libéré ?");
             System.out.println("1: Sion");
             System.out.println("2: Membre libéré");
             System.out.println("");
             System.out.print("> ");
             choix = Keyboard.getInt();
-        }
+        }while(choix != 1 && choix != 2);
 
         if(choix == 1){
-            Sion s = new Sion(name,estHomme,age,null,null);
+            System.out.print("Poste ("+ Poste.listePostes() +") : ");
+            Poste poste = Poste.fromString(Keyboard.getString());
+            
+            while(poste == null){
+                System.out.println("Ce poste n'existe pas.");
+                System.out.print("Poste : ");
+                poste = Poste.fromString(Keyboard.getString());
+            }
+
+            Sion s = new Sion(name,estHomme,age,grade,poste);
             crew.addPersonne(s);
-            System.out.println(name + " ajouté à la liste du personnel. (Type: Sion, Homme: " + estHomme + ", Age: " +age + ")");
+            System.out.println("Ajouté à la liste du personnel : " + s);
             return s;
         }else{
-            Libere l = new Libere(name, estHomme,age,null);
+            Libere l = new Libere(name, estHomme,age,grade);
             crew.addPersonne(l);
-            System.out.println(name + " ajouté à la liste du personnel. (Type: Membré libéré, Homme: " + estHomme + ", Age: " +age + ")");
+            System.out.println("Ajouté à la liste du personnel : " + l);
             return l;
         }
 
