@@ -27,7 +27,7 @@ public class Agent extends Personne{
     }
 
     public void reduireEfficacite() {
-        this.efficacite -= 1;
+        this.efficacite = Math.round(this.efficacite/2);
     }
 
     public Position getPosition() {

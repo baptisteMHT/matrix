@@ -19,7 +19,11 @@ public class Matrix {
 
     public void infiltrer(Libere membre){
         membre.setPosition(trouverPositionLibre());
-        if(estInfecte(membre)) membre.setEstInfecte(true);
+        if(estInfecte(membre)){
+            membre.setEstInfecte(true);
+        }else{
+            agentPlusProche(membre).reduireEfficacite();
+        }
         personnes.add(membre);
     }
 
@@ -127,6 +131,7 @@ public class Matrix {
 
     private boolean estInfecte(Libere membre){
         Agent g = agentPlusProche(membre);
+        System.out.println(g.getNom() + g.getEfficacite() + " est l'agent le plus proche.");
         return g.getEfficacite()/distanceAgent(g, membre) > membre.getES();
     }
 

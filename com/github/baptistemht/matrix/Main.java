@@ -26,7 +26,7 @@ public class Main {
 
 
         //--------------------------------------------------------------------------
-        //For testing and winning time. Create 2 members and a ship. The two members are in the same ship call 'v'
+        //For testing. Create 2 members and a ship. The two members are in the same ship called 'v'
         Libere Eric = new Libere("Eric",true,798,null);
         Sion Didier = new Sion("didier",true,45,null,null);
         Vaisseau V = new Vaisseau("v",5);
@@ -122,47 +122,64 @@ public class Main {
                 case 7:
                     name = findExistingShip(fleet);
 
-                    System.out.println("Quel est le nom de la personne que vous voulez supprimer du vaisseau ?");
+                    System.out.println("Nom de la personne que vous voulez supprimer du vaisseau:");
                     String np = Keyboard.getString();
                     while(fleet.getVaisseau(name).getEquipage().getPersonne(np)==null){
                         System.out.println("Cette personne n'est pas dans l'équipage");
-                        System.out.println("Quel est le nom de la personne que vous voulez supprimer du vaisseau ?");
+                        System.out.println("Nom de la personne que vous voulez supprimer du vaisseau:");
                         np = Keyboard.getString();
-                        
                     }
-                    
                     
                     fleet.getVaisseau(name).getEquipage().removePersonne(np);
                     break;
 
                 case 8:
+                    // Affiche les membres libres infiltrables dans la matrice.
                     afficheInfiltrables(fleet);
 
                     break;
 
                 case 9:
-                    System.out.println("Nom de la personne que vous voulez infiltrer");
+                    System.out.println("Nom de la personne que vous voulez infiltrer:");
                     String nom = Keyboard.getString();
+
+                    boolean done = false;
 
                     for (int i = 0; i< fleet.getVaisseaux().size() ; i++){
                         if (fleet.getVaisseaux().get(i).estSecurise() ){
 
                             for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
+                                
+                                // Test le type de personne et si le nom match.
                                 if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere && fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k).getNom().equalsIgnoreCase(nom)){
-                                    matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)); 
+                                    
+                                    // Test la présence du membre dans la matrice.
+                                    if(matrix.getMembre(nom) == null){
+
+                                        // On ajoute le membre à la matrice et on incrémente ces ES. (En entrée plutot qu'en sortie pour ne pas mourir instantanément).
+                                        ((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)).incrementES();
+                                        matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k));
+                                        done = true;
+                                    }
                                 }
                             } 
                         }
                     }
+
+                    if(!done) System.out.println("Le nom est incorrect ou le membre déjà infiltré.");
+
                     break;
 
                 case 10:
-                    matrix.afficherMembres();
-                    break;
 
+                    //Affiche les membres infiltrés dans la matrice.
+                    matrix.afficherMembres();
+
+                    break;
                 case 11:
                     System.out.println("Nom du membre libre que vous voulez faire sortir:");
                     String n = Keyboard.getString();
+                    
                     while(matrix.getMembre(n) == null){
                         System.out.println("Cette personne n'est pas dans la liste");
                         System.out.println("Nom du membre libre que vous voulez faire sortir:");
@@ -172,11 +189,8 @@ public class Main {
 
                     Libere membre = matrix.getMembre(n);
                     
-                    boolean res = matrix.sortir(n);
-
-                    if(res){
-                        ((Libere) sion.getPersonne(n)).incrementES();
-                    }else{
+                    // On test si la sortie est réussie ou non.
+                    if(!matrix.sortir(n)){
                         System.out.println(membre.getNom() + " est infecté. Il ne peut pas sortir de la matrice.");
                         ((Libere) sion.getPersonne(n)).setEstInfecte(true);
                     }
