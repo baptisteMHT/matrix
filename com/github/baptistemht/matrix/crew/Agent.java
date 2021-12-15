@@ -67,5 +67,10 @@ public class Agent extends Personne{
     public void setGrade(Grade grade) {
         this.grade = grade;        
     }
+
+    @Override
+    public String toString() {
+        return "Agent " + this.nom + " (Homme: " + this.estHomme + ", Age: " + this.age + ") a un degré d'éfficacité de " + this.efficacite + " et est à la position " + this.position + ".";
+    }
     
 }

@@ -33,4 +33,9 @@ public class Position {
         return Math.sqrt((pos.getX()-this.getX())^2 + (pos.getY()-this.getY())^2);
     }
 
+    @Override
+    public String toString() {
+        return "("+this.x+","+this.y+")";
+    }
+
 }

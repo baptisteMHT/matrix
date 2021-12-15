@@ -67,4 +67,9 @@ public class Libere extends Personne {
         this.grade = grade;        
     }
 
+    @Override
+    public String toString() {
+        return "Membre libéré " + this.nom + " (Homme: " + this.estHomme + ", Age: " + this.age + ") a le grade " + this.grade + " et est à la position " + this.position + ". Il est allé " + this.entreesSorties + " fois dans la matrice.";
+    }
+
 }

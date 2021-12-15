@@ -55,5 +55,10 @@ public class Sion extends Personne {
         this.grade = grade;        
     }
 
+    @Override
+    public String toString() {
+        return "Opérateur Sion " + this.nom + " (Homme: " + this.estHomme + ", Age: " + this.age + ") a le grade " + this.grade + " et occupe le poste " + this.poste + ".";
+    }
+
     
 }
