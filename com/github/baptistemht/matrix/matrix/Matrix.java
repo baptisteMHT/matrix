@@ -12,23 +12,24 @@ public class Matrix {
 
     public Matrix(){
         this.personnes = new ArrayList<Personne>();
-        this.personnes.add(new Agent("agent_0", true, 36, new Position()));
-        this.personnes.add(new Agent("agent_1", true, 29, new Position()));
-        this.personnes.add(new Agent("agent_2", true, 48, new Position()));
+        this.personnes.add(new Agent("agent_0", true, 36, trouverPositionLibre()));
+        this.personnes.add(new Agent("agent_1", true, 29, trouverPositionLibre()));
+        this.personnes.add(new Agent("agent_2", true, 48, trouverPositionLibre()));
     }
 
     public void infiltrer(Libere membre){
-        membre.setPosition(new Position());
+        membre.setPosition(trouverPositionLibre());
         personnes.add(membre);
     }
 
-    public void sortir(String nom){
+    public boolean sortir(String nom){
         for(int i = 0; i<personnes.size(); i++){
             if(personnes.get(i).getNom().equalsIgnoreCase(nom) && personnes.get(i) instanceof Libere){
                 personnes.remove(i);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     public Libere getMembre(String nom){
@@ -37,7 +38,6 @@ public class Matrix {
                 return (Libere) personnes.get(i);
             }
         }
-
         return null;
     }
 
@@ -126,6 +126,14 @@ public class Matrix {
             }
         }
         return true;
+    }
+
+    private Position trouverPositionLibre(){
+        Position pos = new Position();
+        while(getPersonneFromPosition(pos) != null){
+            pos = new Position();
+        }
+        return pos;
     }
 
 }
