@@ -70,7 +70,7 @@ public class Agent extends Personne{
 
     @Override
     public String toString() {
-        return "Agent " + this.nom + " (Homme: " + this.estHomme + ", Age: " + this.age + ") a un degré d'éfficacité de " + this.efficacite + " et est à la position " + this.position + ".";
+        return "Agent " + this.nom + " (Homme: " + this.estHomme + ", Age: " + this.age + ", Grade: " + this.grade + ") a un degré d'éfficacité de " + this.efficacite + " et est à la position " + this.position + ".";
     }
     
 }
