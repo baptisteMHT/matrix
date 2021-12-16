@@ -67,7 +67,7 @@ public class Equipage {
         String s = "";
 
         for(int i = 0; i<personnel.size(); i++){
-            s=s+("- "+personnel.get(i).getNom() + "\n");
+            s=s+(i+". "+personnel.get(i) + "\n");
         }
         return s;
     }
