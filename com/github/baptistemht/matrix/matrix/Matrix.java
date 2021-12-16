@@ -1,10 +1,11 @@
 package com.github.baptistemht.matrix.matrix;
 
 import java.util.ArrayList;
-
+import java.util.Comparator;
 
 import com.github.baptistemht.matrix.crew.Agent;
 import com.github.baptistemht.matrix.crew.Libere;
+import com.github.baptistemht.matrix.crew.NameSorter;
 import com.github.baptistemht.matrix.crew.Personne;
 
 public class Matrix {
@@ -96,7 +97,16 @@ public class Matrix {
 
     public void afficherMembresTries(){
 
+        ArrayList<Personne> membres = getMembres();
 
+        membres.sort(new NameSorter());
+
+        for(int i = 0; i<membres.size(); i++){ 
+            System.out.println(i + ". " + membres.get(i));
+        }
+
+
+        /*
         for (int j = 3;j<personnes.size();j++){
             for(int i =3; i<personnes.size();i++){ //même raisonnement que pour afficherMembres
                 if(personnes.get(j).getNom().compareTo(personnes.get(i).getNom())<0){
@@ -116,23 +126,22 @@ public class Matrix {
         
         for(int i = 3; i<personnes.size(); i++){ // on commence a trois car les trois premiers sont les agents créés automatiquement 
             System.out.println((i-2) + ". " + personnes.get(i)); // (i-2) pour avoir une liste commencant à 1 
-    
-    }
+        }
+        */
 
         
     }
 
-    private ArrayList<Libere> getMembres(){
-        ArrayList<Libere> m = new ArrayList<>();
+    private ArrayList<Personne> getMembres(){
+        ArrayList<Personne> m = new ArrayList<>();
         for(int i = 0; i<personnes.size(); i++){
-            if(personnes.get(i) instanceof Libere) m.add((Libere) personnes.get(i));
+            if(personnes.get(i) instanceof Libere) m.add(personnes.get(i));
         }
         return m;
     }
     
     private double distanceAgent(Agent agent, Libere membre){
         double d = agent.getPosition().distance(membre.getPosition());
-        System.out.println(membre.getNom() + " | " + agent.getNom() + " " + agent.getEfficacite() + " | dist : " + d);
         return d;
     }
 
@@ -154,7 +163,6 @@ public class Matrix {
 
     private boolean estInfecte(Libere membre){
         Agent g = agentPlusProche(membre);
-        System.out.println(g.getNom() + g.getEfficacite() + " est l'agent le plus proche.");
         return g.getEfficacite()/distanceAgent(g, membre) > membre.getES();
     }
 
