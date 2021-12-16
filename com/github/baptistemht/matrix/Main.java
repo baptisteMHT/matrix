@@ -9,8 +9,8 @@ import com.github.baptistemht.matrix.matrix.Matrix;
 import com.github.baptistemht.matrix.ships.Equipage;
 import com.github.baptistemht.matrix.crew.Personne;
 import com.github.baptistemht.matrix.crew.Poste;
-
 import in.keyboard.Keyboard;
+
 
 public class Main {
     public static void main(String args[]){
@@ -23,27 +23,6 @@ public class Main {
         Flotte fleet    = new Flotte("Flotte de Sion");
         Equipage sion  = new Equipage(MAX_PERSONNEL);
         Matrix matrix = new Matrix();
-        
-
-
-
-        //--------------------------------------------------------------------------
-        //For testing. Create 2 members and a ship. The two members are in the same ship called 'v'
-        Libere Eric = new Libere("Eric",true,798,null);
-        Sion Didier = new Sion("didier",true,45,null,null);
-        Vaisseau V = new Vaisseau("v",5);
-        fleet.addVaisseau(V);
-        fleet.getVaisseau("v").getEquipage().addPersonne(Didier);
-        Sion a = new Sion("a",true,45,null,null);
-        fleet.getVaisseau("v").getEquipage().addPersonne(a);
-        Libere Maurice = new Libere("Maurice",true,4,null);
-        fleet.getVaisseau("v").getEquipage().addPersonne(Maurice);
-        sion.addPersonne(Eric);
-        sion.addPersonne(Didier);
-        sion.addPersonne(a);
-        sion.addPersonne(Maurice);
-
-        //--------------------------------------------------------------------------
 
         //Affichage du menu
         System.out.println(" Matrix v1.0 - Par Mathys et Baptiste");
@@ -57,7 +36,7 @@ public class Main {
         while(choix != 14){
 
             switch(choix){
-                case 1:
+                case 1: //permet de créer un personnage on utilise donc la fonction faite pour
                     createCrew(sion);
                     break;
 
@@ -135,7 +114,6 @@ public class Main {
                     break;
 
                 case 8:
-                    // Affiche les membres libres infiltrables dans la matrice.
                     afficheInfiltrables(fleet);
 
                     break;
@@ -144,20 +122,25 @@ public class Main {
                     System.out.print("Nom de la personne à infiltrer : ");
                     String nom = Keyboard.getString();
 
-                    boolean done = false;
+                    boolean done = false; // Cette variable permettra l'affichage utilisateur final.
 
-                    for (int i = 0; i< fleet.getVaisseaux().size() ; i++){
-                        if (fleet.getVaisseaux().get(i).estSecurise() ){
+                    //Un membre est infiltrable si:
+                    //                              - Il est dans un vaisseau sécurisé
+                    //                              - C'est un membre libre
+                    // Voilà pourquoi on suit la démarche suivante.
 
-                            for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){
+                    for (int i = 0; i< fleet.getVaisseaux().size() ; i++){ //On parcourt tous les vaisseaux de la flotte
+                        if (fleet.getVaisseaux().get(i).estSecurise() ){ // On ne retient que ceux sécurisés
+
+                            for (int k = 0; k<fleet.getVaisseaux().get(i).getEquipage().getPersonnel().size(); k++){ // On parcourt l'équipage de ces vaisseaux
                                 
-                                // Test le type de personne et si le nom match.
+                                // On ne retient que les membres libres ET ayant le même nom rentré par l'utilisateur.
                                 if (fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k) instanceof Libere && fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k).getNom().equalsIgnoreCase(nom)){
-                                    
-                                    // Test la présence du membre dans la matrice.
+   
+                                    // On vérifie qu'il n'est pas déjà infiltré.
                                     if(matrix.getMembre(nom) == null){
 
-                                        // On ajoute le membre à la matrice et on incrémente ces ES. (En entrée plutot qu'en sortie pour ne pas mourir instantanément).
+                                        // On ajoute le membre à la matrice et on incrémente ces ES. (En entrée plutôt qu'en sortie pour ne pas mourir instantanément).
                                         ((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k)).incrementES();
                                         matrix.infiltrer((Libere) fleet.getVaisseaux().get(i).getEquipage().getPersonnel().get(k));
                                         done = true;
@@ -181,10 +164,10 @@ public class Main {
                     matrix.afficherMembres();
 
                     break;
-                case 11:
+                case 11: 
                     System.out.print("Nom du membre à faire sortir : ");
                     String n = Keyboard.getString();
-                    
+                    //On vérifie dans un premier temps que le membre est bien infiltré.
                     while(matrix.getMembre(n) == null){
                         System.out.println("Cette personne n'est pas infiltrée.");
                         System.out.print("Nom du membre à faire sortir : ");
@@ -193,7 +176,9 @@ public class Main {
 
                     Libere membre = matrix.getMembre(n);
                     
-                    // On test si la sortie est réussie ou non.
+                    // On test si la sortie est réussie ou non. 
+
+                    // Elle est réussi si il n'est pas infecté.
                     if(!matrix.sortir(n)){
                         System.out.println(membre.getNom() + " est infecté. Il ne peut pas sortir de la matrice.");
                         ((Libere) sion.getPersonne(n)).setEstInfecte(true);
@@ -209,17 +194,21 @@ public class Main {
                     matrix.afficherMembresTries();
                     break;
                     
-                default:
+                default: // Ce message est affiché et la boucle est relancée pour toute entrée par l'utilisateur n'étant pas 
+                // un nombre compris entre 1 et 14 correspondant à tous les choix possible (fin incluse).
                     System.out.println("Choix incorrect.");
                     break;
             }
+            // On réaffiche le menu et reprenons le choix tant que la fin n'est pas demandée.
             displayMenu();
             choix = Keyboard.getInt();
         }
-        System.out.println("Goodbye my friend...");
+        System.out.println("Goodbye my friend..."); //ici l'utilisateur met fin au jeu en entrant 14.
 
     }
 
+
+    //Afin de rendre le code plus lisible mise en place de la procédure displayMenu permettant d'afficher tout le menu.
     private static void displayMenu(){
         System.out.println("");
         System.out.println("Que voulez vous faire ?");
@@ -242,7 +231,8 @@ public class Main {
     }
 
     
-
+// ici ce trouve toutes les fonctions rédigées hors du switch car utilisables plusieurs fois, ou alors
+// afin d'améliorer la lisibilité.
     private static String findExistingShip(Flotte fleet){
         System.out.print("Nom du vaisseau : ");
         String name = Keyboard.getString();

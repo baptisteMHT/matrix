@@ -5,7 +5,7 @@ import com.github.baptistemht.matrix.crew.Sion;
 public class Vaisseau {
 
     private final String nom;
-    private Equipage equipage; //enlever le final pour voir si ca vient de là
+    private Equipage equipage;
 
     public Vaisseau(String nom, int limit){
         this.nom = nom;

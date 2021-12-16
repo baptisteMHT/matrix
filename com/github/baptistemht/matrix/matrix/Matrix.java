@@ -1,7 +1,7 @@
 package com.github.baptistemht.matrix.matrix;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+
 
 import com.github.baptistemht.matrix.crew.Agent;
 import com.github.baptistemht.matrix.crew.Libere;
@@ -90,7 +90,7 @@ public class Matrix {
 
     public void afficherMembres(){
         for(int i = 3; i<personnes.size(); i++){ // on commence a trois car les trois premiers sont les agents créés automatiquement 
-                System.out.println((i-2) + ". " + personnes.get(i)); // (i-2) pour avoir une liste commencant à 1 
+                System.out.println((i-3) + ". " + personnes.get(i)); // (i-3) pour avoir une liste commencant à 0
         
         }
     }
@@ -106,28 +106,7 @@ public class Matrix {
         }
 
 
-        /*
-        for (int j = 3;j<personnes.size();j++){
-            for(int i =3; i<personnes.size();i++){ //même raisonnement que pour afficherMembres
-                if(personnes.get(j).getNom().compareTo(personnes.get(i).getNom())<0){
-                    personnes.set(j,personnes.get(j));
-                    personnes.set(i,personnes.get(i));
 
-                    
-    
-                }
-                else{
-                personnes.set(j,personnes.get(i));
-                personnes.set(i,personnes.get(j));
-                System.out.println(personnes.get(i) + "personne en i avec  i = " + i + "j = " + j);
-                }
-            }
-        }
-        
-        for(int i = 3; i<personnes.size(); i++){ // on commence a trois car les trois premiers sont les agents créés automatiquement 
-            System.out.println((i-2) + ". " + personnes.get(i)); // (i-2) pour avoir une liste commencant à 1 
-        }
-        */
 
         
     }
