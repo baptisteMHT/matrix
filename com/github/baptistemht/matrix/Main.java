@@ -1,5 +1,9 @@
-package com.github.baptistemht.matrix;
+/*
+Voici le lien du github utilisé afin de pouvoir collaborer de la meilleure des façons.
+https://github.com/baptisteMHT/matrix
+*/
 
+package com.github.baptistemht.matrix;
 import com.github.baptistemht.matrix.ships.Flotte;
 import com.github.baptistemht.matrix.ships.Vaisseau;
 import com.github.baptistemht.matrix.crew.Grade;
